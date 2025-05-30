@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thank You ООД / Thank You Ltd.</title>
+  <style>
+    body {
+      background-color: #bba8ff;
+      color: #222;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      background-color: black;
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+      font-weight: bold;
+      font-size: 28px;
+      user-select: none;
+    }
+
+    .lang-switch {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .lang-switch button {
+      padding: 8px 22px;
+      font-weight: bold;
+      font-size: 16px;
+      border: 2px solid #6a4fff;
+      background-color: transparent;
+      color: #6a4fff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+
+    .lang-switch button.active,
+    .lang-switch button:hover {
+      background-color: #6a4fff;
+      color: white;
+      border-color: #6a4fff;
+    }
+
+    main {
+      max-width: 900px;
+      width: 90%;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 26px;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.4;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    nav {
+      margin-bottom: 30px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      font-size: 18px;
+      border: 2px solid transparent;
+      padding: 8px 15px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+      margin: 0 10px;
+    }
+
+    nav a:hover {
+      background-color: #6a4fff;
+      color: white;
+      border-color: #6a4fff;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px 30px;
+      margin-bottom: 40px;
+    }
+
+    .product {
+      position: relative;
+      width: 250px;
+      text-align: center;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .product img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      margin-bottom: 10px;
+    }
+
+    .product img:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .img-label {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 6px 16px;
+      font-weight: bold;
+      font-size: 14px;
+      border-radius: 15px;
+      pointer-events: none;
+      white-space: nowrap;
+      user-select: none;
+      box-shadow: 0 0 5px rgba(0,0,0,0.6);
+      letter-spacing: 0.5px;
+    }
+
+    .price {
+      margin-top: 8px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #6a4fff;
+      user-select: none;
+    }
+
+    button.buy-btn {
+      margin-top: 12px;
+      padding: 12px 32px;
+      background: linear-gradient(45deg, #7b5cff, #b06eff);
+      border: none;
+      border-radius: 30px;
+      color: white;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(123, 92, 255, 0.7);
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+    button.buy-btn:hover {
+      box-shadow: 0 0 15px 4px #a88fff;
+      transform: scale(1.05);
+      background: linear-gradient(45deg, #a88fff, #c6aaff);
+    }
+
+    footer {
+      margin-bottom: 30px;
+      color: #444;
+      font-size: 14px;
+      user-select: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .product {
+        width: 100%;
+        max-width: 350px;
+      }
+      .product img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    Thank You ООД / Thank You Ltd.
+  </header>
+
+  <div class="lang-switch">
+    <button id="btn-en" class="active" onclick="setLang('en')">English</button>
+    <button id="btn-bg" onclick="setLang('bg')">Български</button>
+  </div>
+
+  <main>
+    <section id="content-en">
+      <h2>Welcome to Thank You Ltd.</h2>
+      <p>We sell beautiful handmade bracelets and decorative garlands. Our products are crafted with care and passion to brighten your day and your style.</p>
+
+      <nav>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+      </nav>
+
+      <div class="gallery">
+        <div class="product">
+          <div class="img-label">Elegant Bracelet</div>
+          <img src="bracelet1.png" alt="Handmade Bracelet 1" />
+          <div class="price">$15.00</div>
+          <button class="buy-btn" onclick="goToDelivery('Elegant Bracelet')">Buy</button>
+        </div>
+        <div class="product">
+          <div class="img-label">Shining Bracelet</div>
+          <img src="bracelet2.png" alt="Handmade Bracelet 2" />
+          <div class="price">$18.00</div>
+          <button class="buy-btn" onclick="goToDelivery('Shining Bracelet')">Buy</button>
+        </div>
+        <div class="product">
+          <div class="img-label">Evening Magic Garland</div>
+          <img src="garland1.png" alt="Decorative Garland 1" />
+          <div class="price">$25.00</div>
+          <button class="buy-btn" onclick="goToDelivery('Evening Magic Garland')">Buy</button>
+        </div>
+        <div class="product">
+          <div class="img-label">Golden Sunset Garland</div>
+          <img src="garland2.png" alt="Decorative Garland 2" />
+          <div class="price">$22.00</div>
+          <button class="buy-btn" onclick="goToDelivery('Golden Sunset Garland')">Buy</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="content-bg" style="display:none;">
+      <h2>Добре дошли в Thank You ООД</h2>
+      <p>Продаваме красиви ръчно изработени гривни и декоративни герлянди. Нашите продукти са създадени с грижа и страст, за да озарят деня ви и стила ви.</p>
+
+      <nav>
+        <a href="#">За Нас</a>
+        <a href="#">Контакти</a>
+      </nav>
+
+      <div class="gallery">
+        <div class="product">
+          <div class="img-label">Гривна "Елегант"</div>
+          <img src="bracelet1.png" alt="Ръчно изработена гривна 1" />
+          <div class="price">15.00 лв.</div>
+          <button class="buy-btn" onclick="goToDelivery('Гривна Елегант')">Купи</button>
+        </div>
+        <div class="product">
+          <div class="img-label">Гривна "Сияние"</div>
+          <img src="bracelet2.png" alt="Ръчно изработена гривна 2" />
+          <div class="price">18.00 лв.</div>
+          <button class="buy-btn" onclick="goToDelivery('Гривна Сияние')">Купи</button>
+        </div>
+        <div class="product">
+          <div class="img-label">Герлянд "Вечерна магия"</div>
+          <img src="garland1.png" alt="Декоративна герлянда 1" />
+          <div class="price">25.00 лв.</div>
+          <button class="buy-btn" onclick="goToDelivery('Герлянд Вечерна магия')">Купи</button>
+        </div>
+        <div class="product">
+          <div class="img-label">Герлянд "Златен залез"</div>
+          <img src="garland2.png" alt="Декоративна герлянда 2" />
+          <div class="price">22.00 лв.</div>
+          <button class="buy-btn" onclick="goToDelivery('Герлянд Златен залез')">Купи</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Thank You ООД / Thank You Ltd. All rights reserved.
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      const enContent = document.getElementById('content-en');
+      const bgContent = document.getElementById('content-bg');
+      const btnEn = document.getElementById('btn-en');
+      const btnBg = document.getElementById('btn-bg');
+
+      if(lang === 'en') {
+        enContent.style.display = 'block';
+        bgContent.style.display = 'none';
+        btnEn.classList.add('active');
+        btnBg.classList.remove('active');
+      } else {
+        enContent.style.display = 'none';
+        bgContent.style.display = 'block';
+        btnEn.classList.remove('active');
+        btnBg.classList.add('active');
+      }
+    }
+
+    function goToDelivery(productName) {
+      // Encode product name in URL
+      const encodedProduct = encodeURIComponent(productName);
+      window.location.href = `delivery.html?product=${encodedProduct}`;
+    }
+  </script>
+  
+<head>
+<meta property="og:title" content="ThankYou OOD" />
+<meta property="og:description" content="Ние продаваме гривни и герлянди! Очаквайте скоро Merch"/>
+<meta property="og:url" content="https://thankyou.fpr.net" />
+<meta property="og:type" content="website" />
+</head>
+
+</body>
+</html>
