@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Us | Контакти</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3edff;
+      color: #222;
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    header {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: #6a4fff;
+    }
+
+    .lang-switch {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .lang-switch button {
+      padding: 8px 20px;
+      font-weight: bold;
+      background: none;
+      border: 2px solid #6a4fff;
+      border-radius: 10px;
+      cursor: pointer;
+      color: #6a4fff;
+    }
+
+    .lang-switch button.active,
+    .lang-switch button:hover {
+      background: #6a4fff;
+      color: white;
+    }
+
+    section {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #6a4fff;
+      margin-top: 0;
+    }
+
+    .contact-methods {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-top: 10px;
+    }
+
+    .contact-methods a {
+      color: #6a4fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .contact-methods a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Thank You ООД / Thank You Ltd.</header>
+
+  <div class="lang-switch">
+    <button onclick="setLang('en')" id="btn-en" class="active">English</button>
+    <button onclick="setLang('bg')" id="btn-bg">Български</button>
+  </div>
+
+  <section>
+    <div id="contact-en">
+      <h2>Contact Us</h2>
+      <div class="contact-methods">
+        <p>📞 Phone: <a href="tel:+359888123456">+359 888 123 456</a></p>
+        <p>📧 Email: <a href="mailto:thankyou.ltd@example.com">thankyou.ltd@example.com</a></p>
+        <p>📱 TikTok: <a href="https://www.tiktok.com/@thankyou.ltd" target="_blank">@thankyou.ltd</a></p>
+        <p>🚚 We deliver with Econt and Speedy.</p>
+      </div>
+    </div>
+
+    <div id="contact-bg" style="display: none;">
+      <h2>Контакти</h2>
+      <div class="contact-methods">
+        <p>📞 Телефон: <a href="tel:+359888123456">+359 888 123 456</a></p>
+        <p>📧 Имейл: <a href="mailto:thankyou.ltd@example.com">thankyou.ltd@example.com</a></p>
+        <p>📱 TikTok: <a href="https://www.tiktok.com/@thankyou.ltd" target="_blank">@thankyou.ltd</a></p>
+        <p>🚚 Доставяме чрез Еконт и Спиди.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function setLang(lang) {
+      const btnEn = document.getElementById("btn-en");
+      const btnBg = document.getElementById("btn-bg");
+      const contactEn = document.getElementById("contact-en");
+      const contactBg = document.getElementById("contact-bg");
+
+      if (lang === "bg") {
+        btnBg.classList.add("active");
+        btnEn.classList.remove("active");
+        contactEn.style.display = "none";
+        contactBg.style.display = "block";
+      } else {
+        btnEn.classList.add("active");
+        btnBg.classList.remove("active");
+        contactEn.style.display = "block";
+        contactBg.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+</html>
