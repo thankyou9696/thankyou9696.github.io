@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Us | За Нас</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3edff;
+      color: #222;
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    header {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: #6a4fff;
+    }
+
+    .lang-switch {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .lang-switch button {
+      padding: 8px 20px;
+      font-weight: bold;
+      background: none;
+      border: 2px solid #6a4fff;
+      border-radius: 10px;
+      cursor: pointer;
+      color: #6a4fff;
+    }
+
+    .lang-switch button.active,
+    .lang-switch button:hover {
+      background: #6a4fff;
+      color: white;
+    }
+
+    section {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #6a4fff;
+      margin-top: 0;
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 17px;
+      margin-bottom: 20px;
+    }
+
+    .contact-info {
+      margin-top: 30px;
+    }
+
+    .contact-info a {
+      display: block;
+      color: #6a4fff;
+      text-decoration: none;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Thank You ООД / Thank You Ltd.</header>
+
+  <div class="lang-switch">
+    <button onclick="setLang('en')" id="btn-en" class="active">English</button>
+    <button onclick="setLang('bg')" id="btn-bg">Български</button>
+  </div>
+
+  <section>
+    <div id="about-en">
+      <h2>About Us</h2>
+      <p>
+        Thank You Ltd. is a small Bulgarian business dedicated to bringing joy through handmade crafts.
+        We specialize in unique bracelets, decorative garlands, hairpins, and more — each crafted with love, care, and attention to detail.
+      </p>
+      <p>
+        Our mission is to make people smile with affordable, beautiful creations that express individuality and charm.
+        Thank you for supporting local creativity!
+      </p>
+
+      <div class="contact-info">
+        <h3>Contact</h3>
+        <a href="https://www.tiktok.com/@thankyou.ltd" target="_blank">TikTok: @thankyou.ltd</a>
+        <a href="tel:+359888123456">Phone: +359 888 123 456</a>
+        <a href="mailto:thankyou.ltd@example.com">Email: thankyou.ltd@example.com</a>
+      </div>
+    </div>
+
+    <div id="about-bg" style="display: none;">
+      <h2>За Нас</h2>
+      <p>
+        Thank You ООД е малък български бизнес, посветен на ръчно изработени изделия, които носят радост.
+        Специализираме в уникални гривни, декоративни герлянди, шноли и още — всяко изделие е направено с любов, грижа и внимание към детайла.
+      </p>
+      <p>
+        Нашата мисия е да правим хората щастливи с достъпни и красиви творения, които изразяват индивидуалност и чар.
+        Благодарим, че подкрепяте местното творчество!
+      </p>
+
+      <div class="contact-info">
+        <h3>Контакти</h3>
+        <a href="https://www.tiktok.com/@thankyou.ltd" target="_blank">TikTok: @thankyou.ltd</a>
+        <a href="tel:+359888123456">Телефон: +359 888 123 456</a>
+        <a href="mailto:thankyou.ltd@example.com">Имейл: thankyou.ltd@example.com</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function setLang(lang) {
+      const btnEn = document.getElementById("btn-en");
+      const btnBg = document.getElementById("btn-bg");
+      const aboutEn = document.getElementById("about-en");
+      const aboutBg = document.getElementById("about-bg");
+
+      if (lang === "bg") {
+        btnBg.classList.add("active");
+        btnEn.classList.remove("active");
+        aboutEn.style.display = "none";
+        aboutBg.style.display = "block";
+      } else {
+        btnEn.classList.add("active");
+        btnBg.classList.remove("active");
+        aboutEn.style.display = "block";
+        aboutBg.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+</html>
