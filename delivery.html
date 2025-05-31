@@ -1,72 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Order Delivery - Thank You Ltd.</title>
+  <meta charset="UTF-8" />
+  <title>Delivery | Доставка</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f6f1ff;
-      padding: 40px;
+      background: #f3edff;
+      padding: 40px 20px;
       max-width: 600px;
       margin: auto;
+      color: #222;
     }
     h2 {
       text-align: center;
-      color: #333;
+      color: #6a4fff;
+      margin-bottom: 20px;
+    }
+    .lang-switch {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .lang-switch button {
+      padding: 8px 20px;
+      font-weight: bold;
+      background: none;
+      border: 2px solid #6a4fff;
+      border-radius: 10px;
+      cursor: pointer;
+      color: #6a4fff;
+    }
+    .lang-switch button.active, .lang-switch button:hover {
+      background: #6a4fff;
+      color: white;
     }
     form {
       display: flex;
       flex-direction: column;
       gap: 15px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     input, select, textarea {
-      padding: 10px;
+      padding: 12px;
+      font-size: 16px;
       border-radius: 8px;
       border: 1px solid #ccc;
-      font-size: 16px;
+      width: 100%;
     }
-    button {
+    button[type="submit"] {
       padding: 12px;
       background: linear-gradient(45deg, #7b5cff, #b06eff);
+      border: none;
       color: white;
       font-weight: bold;
-      border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
+      transition: 0.3s;
     }
-    button:hover {
+    button[type="submit"]:hover {
       background: linear-gradient(45deg, #a88fff, #c6aaff);
     }
   </style>
 </head>
 <body>
 
-  <h2>Order Delivery</h2>
+  <div class="lang-switch">
+    <button onclick="setLang('en')" id="btn-en" class="active">English</button>
+    <button onclick="setLang('bg')" id="btn-bg">Български</button>
+  </div>
+
+  <h2 id="form-title">Delivery Form</h2>
 
   <form action="https://formspree.io/f/mwpberqr" method="POST">
-    <!-- Auto-filled product name -->
     <input type="text" name="product" id="productInput" readonly />
 
-    <input type="text" name="name" placeholder="Your Name" required />
-    <input type="tel" name="phone" placeholder="Phone Number" required />
+    <input type="text" name="name" id="nameInput" placeholder="Your Name" required />
+    <input type="tel" name="phone" id="phoneInput" placeholder="Phone Number" required />
 
-    <select name="delivery_method" required>
-      <option value="">Select Delivery Method</option>
+    <select name="delivery_method" id="deliveryInput" required>
+      <option value="">Choose Delivery Method</option>
       <option value="Ekont">Ekont</option>
       <option value="Speedy">Speedy</option>
     </select>
 
-    <textarea name="address" placeholder="Your Delivery Address" required></textarea>
+    <textarea name="address" id="addressInput" placeholder="Delivery Address" required></textarea>
 
-    <button type="submit">Place Order</button>
+    <button type="submit" id="submitBtn">Place Order</button>
   </form>
 
   <script>
+    // Auto-fill product from URL
     const urlParams = new URLSearchParams(window.location.search);
-    const product = urlParams.get('product');
+    const product = urlParams.get("product");
     if (product) {
-      document.getElementById('productInput').value = product;
+      document.getElementById("productInput").value = product;
+    }
+
+    function setLang(lang) {
+      const btnEn = document.getElementById("btn-en");
+      const btnBg = document.getElementById("btn-bg");
+
+      if (lang === "bg") {
+        btnBg.classList.add("active");
+        btnEn.classList.remove("active");
+
+        document.getElementById("form-title").innerText = "Форма за доставка";
+        document.getElementById("nameInput").placeholder = "Вашето име";
+        document.getElementById("phoneInput").placeholder = "Телефонен номер";
+        document.getElementById("deliveryInput").options[0].text = "Изберете метод на доставка";
+        document.getElementById("deliveryInput").options[1].text = "Еконт";
+        document.getElementById("deliveryInput").options[2].text = "Спиди";
+        document.getElementById("addressInput").placeholder = "Адрес за доставка";
+        document.getElementById("submitBtn").innerText = "Поръчай";
+      } else {
+        btnEn.classList.add("active");
+        btnBg.classList.remove("active");
+
+        document.getElementById("form-title").innerText = "Delivery Form";
+        document.getElementById("nameInput").placeholder = "Your Name";
+        document.getElementById("phoneInput").placeholder = "Phone Number";
+        document.getElementById("deliveryInput").options[0].text = "Choose Delivery Method";
+        document.getElementById("deliveryInput").options[1].text = "Ekont";
+        document.getElementById("deliveryInput").options[2].text = "Speedy";
+        document.getElementById("addressInput").placeholder = "Delivery Address";
+        document.getElementById("submitBtn").innerText = "Place Order";
+      }
     }
   </script>
 
