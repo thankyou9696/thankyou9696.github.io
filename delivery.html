@@ -1,161 +1,74 @@
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thank You ООД - Гривни и Герлянди</title>
+  <meta charset="UTF-8">
+  <title>Order Delivery - Thank You Ltd.</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #bba8ff;
-      margin: 0;
-      color: #222;
-      text-align: center;
-      padding: 40px 20px;
+      background: #f6f1ff;
+      padding: 40px;
+      max-width: 600px;
+      margin: auto;
     }
-    h1 {
-      color: black;
-      margin-bottom: 20px;
+    h2 {
+      text-align: center;
+      color: #333;
     }
     form {
-      background: white;
-      max-width: 450px;
-      margin: 0 auto;
-      padding: 25px 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
-    form h2 {
-      color: #6a4fff;
-      margin-top: 0;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-    label {
-      display: block;
-      margin: 12px 0 6px;
-      font-weight: bold;
-    }
-    select, input, textarea {
-      width: 100%;
+    input, select, textarea {
       padding: 10px;
-      border-radius: 6px;
+      border-radius: 8px;
       border: 1px solid #ccc;
       font-size: 16px;
-      box-sizing: border-box;
-    }
-    textarea {
-      resize: vertical;
     }
     button {
-      margin-top: 20px;
-      width: 100%;
-      background-color: #6a4fff;
+      padding: 12px;
+      background: linear-gradient(45deg, #7b5cff, #b06eff);
       color: white;
       font-weight: bold;
-      font-size: 18px;
       border: none;
-      padding: 12px;
       border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
     button:hover {
-      background-color: #5941cc;
-    }
-    .note {
-      margin-top: 30px;
-      color: black;
-      font-style: italic;
-      font-size: 14px;
-      max-width: 450px;
-      margin-left: auto;
-      margin-right: auto;
+      background: linear-gradient(45deg, #a88fff, #c6aaff);
     }
   </style>
 </head>
 <body>
-  <h1>Thank You ООД - Гривни и Герлянди</h1>
-  
-  <form id="orderForm">
-    <h2>Поръчка и доставка / Order & Delivery</h2>
-    
-    <label for="product">Изберете продукт / Choose Product</label>
-    <select id="product" name="product" required>
-      <option value="">-- Изберете продукт / Select product --</option>
-      <option value="bracelet1">Гривна "Елегант" - 20 лв.</option>
-      <option value="bracelet2">Гривна "Сияние" - 25 лв.</option>
-      <option value="garland1">Герлянд "Вечерна магия" - 30 лв.</option>
-      <option value="garland2">Герлянд "Златен залез" - 35 лв.</option>
+
+  <h2>Order Delivery</h2>
+
+  <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <!-- Auto-filled product name -->
+    <input type="text" name="product" id="productInput" readonly />
+
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="tel" name="phone" placeholder="Phone Number" required />
+
+    <select name="delivery_method" required>
+      <option value="">Select Delivery Method</option>
+      <option value="Ekont">Ekont</option>
+      <option value="Speedy">Speedy</option>
     </select>
 
-    <label for="name">Име / Full Name</label>
-    <input type="text" id="name" name="name" placeholder="Вашето име" required />
+    <textarea name="address" placeholder="Your Delivery Address" required></textarea>
 
-    <label for="phone">Телефон / Phone Number</label>
-    <input type="tel" id="phone" name="phone" placeholder="+359 88 123 4567" required />
-
-    <label for="address">Адрес / Address</label>
-    <textarea id="address" name="address" rows="3" placeholder="Вашият адрес" required></textarea>
-
-    <label for="courier">Изберете куриер / Choose Courier</label>
-    <select id="courier" name="courier" required>
-      <option value="">-- Изберете / Select --</option>
-      <option value="ekont">Ekont</option>
-      <option value="speedy">Speedy</option>
-    </select>
-
-    <button type="submit">Изпрати поръчка / Submit Order</button>
+    <button type="submit">Place Order</button>
   </form>
 
-  <div class="note">
-    След като изпратите поръчката, ще се свържем с Вас за потвърждение и плащане.<br/>
-    After submitting your order, we will contact you for confirmation and payment.
-  </div>
-
   <script>
-    // Get query parameter by name
-    function getQueryParam(param) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
+    const urlParams = new URLSearchParams(window.location.search);
+    const product = urlParams.get('product');
+    if (product) {
+      document.getElementById('productInput').value = product;
     }
-
-    // On page load, set the product select based on URL parameter
-    window.addEventListener('DOMContentLoaded', () => {
-      const productParam = getQueryParam('product');
-      if(productParam) {
-        const productSelect = document.getElementById('product');
-        const optionToSelect = Array.from(productSelect.options).find(opt => opt.value === productParam);
-        if(optionToSelect) {
-          productSelect.value = productParam;
-        }
-      }
-    });
-
-    document.getElementById('orderForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const product = document.getElementById('product').value;
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const address = document.getElementById('address').value.trim();
-      const courier = document.getElementById('courier').value;
-
-      if (!product || !name || !phone || !address || !courier) {
-        alert('Моля, попълнете всички полета! / Please fill all fields!');
-        return;
-      }
-
-      alert(`Благодарим за поръчката!\n
-Продукт: ${product}
-Име: ${name}
-Телефон: ${phone}
-Адрес: ${address}
-Куриер: ${courier}`);
-
-      this.reset();
-    });
   </script>
+
 </body>
 </html>
